@@ -1,4 +1,5 @@
 from vizdoomgym.envs.vizdoomenv import VizdoomEnv
+from vizdoomgym.envs.vizdoomenv_cig import VizdoomEnvCig
 from vizdoomgym.envs.vizdoombasic import VizdoomBasic
 from vizdoomgym.envs.vizdoomcorridor import VizdoomCorridor
 from vizdoomgym.envs.vizdoomdefendcenter import VizdoomDefendCenter
@@ -9,3 +10,5 @@ from vizdoomgym.envs.vizdoompredictposition import VizdoomPredictPosition
 from vizdoomgym.envs.vizdoomtakecover import VizdoomTakeCover
 from vizdoomgym.envs.vizdoomdeathmatch import VizdoomDeathmatch
 from vizdoomgym.envs.vizdoomhealthgatheringsupreme import VizdoomHealthGatheringSupreme
+from vizdoomgym.envs.vizdoommultiduel import VizdoomMultiDuel
+from vizdoomgym.envs.vizdoom_cig import VizdoomCig

@@ -49,3 +49,13 @@ register(
     id='VizdoomHealthGatheringSupreme-v0',
     entry_point='vizdoomgym.envs:VizdoomHealthGatheringSupreme'
 )
+
+register(
+    id='VizdoomMultiDuel-v0',
+    entry_point='vizdoomgym.envs:VizdoomMultiDuel'
+)
+
+register(
+    id='VizdoomCig-v0',
+    entry_point='vizdoomgym.envs:VizdoomCig'
+)
