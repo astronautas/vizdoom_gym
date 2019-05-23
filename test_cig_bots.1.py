@@ -19,9 +19,8 @@ from __future__ import print_function
 import gym
 from gym_vizdoom import (LIST_OF_ENVS, EXPLORATION_GOAL_FRAME, GOAL_REACHING_REWARD)
 import vizdoomgym
-import time
 
-env = gym.make("VizdoomTakeCover-v0", agent_id=0)
+env = gym.make("VizdoomCig-v0", port=5030, agent_id=0, agents_total=2)
 env.imitation = True
 
 for i in range(0, 20):
@@ -30,7 +29,6 @@ for i in range(0, 20):
     obs = env.reset()
 
     while True:
-        time.sleep(0.1)
         action = policy(env, obs)
         obs, reward, done, info = env.step(action)
         

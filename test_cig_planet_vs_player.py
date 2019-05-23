@@ -19,20 +19,34 @@ from __future__ import print_function
 import gym
 from gym_vizdoom import (LIST_OF_ENVS, EXPLORATION_GOAL_FRAME, GOAL_REACHING_REWARD)
 import vizdoomgym
+from multiprocessing import Process
+from threading import Thread
 import time
 
-env = gym.make("VizdoomTakeCover-v0", agent_id=0)
-env.imitation = True
-
-for i in range(0, 20):
+def run_agent(a_id):
+    print(f"making {a_id}")
+    env = gym.make("VizdoomCig-v0", agent_id=a_id, agents_total=2, port=5030)
+    env.imitation = False
     policy = lambda env, obs: env.action_space.sample()
     done = False
-    obs = env.reset()
+    steps = 0
+
+    env.reset()
 
     while True:
-        time.sleep(0.1)
-        action = policy(env, obs)
-        obs, reward, done, info = env.step(action)
-        
-        if done:
-            env.reset()
+        env.step(env.action_space.sample())
+        pass
+
+agents = []
+
+# host = Process(target=run_agent, args=(str(0)))
+# host.start()
+
+# player2 = Process(target=run_agent, args=(str(1)))
+# player2.start()
+
+player3 = Process(target=run_agent, args=(str(4)))
+player3.start()
+
+# run_agent(0)
+input()

@@ -29,12 +29,15 @@ class VizdoomEnv(gym.Env):
     
     # Each agent is spawned as a separate environment
     def setup_multiplayer(self, game, agent_id):
+        agent_id = int(agent_id)
         print("Starting agent: ", agent_id)
 
         if agent_id == 0:
-            game.add_game_args("-host 2 -deathmatch +timelimit 1 +sv_spawnfarthest 1")
+            print("Host")
+            game.add_game_args("-host 3 +timelimit 1 +sv_spawnfarthest 1")
             game.add_game_args(f"+name Player{agent_id} +colorset {agent_id}")
         else:
+            print("Slave")
             game.add_game_args("-join 127.0.0.1")
             game.add_game_args(f"+name Player{agent_id} +colorset {agent_id}")
 
@@ -45,13 +48,12 @@ class VizdoomEnv(gym.Env):
         print(agent_id)
         print("------")
 
-        self.agent_id = agent_id
+        self.agent_id = int(agent_id)
         self.started = False
 
         # init game
         self.level = level
         self.game = DoomGame()
-        self.game.set_screen_resolution(ScreenResolution.RES_640X480)
         scenarios_dir = os.path.join(os.path.dirname(__file__), 'scenarios')
 
         if not(agent_id is None):
@@ -59,7 +61,8 @@ class VizdoomEnv(gym.Env):
             self.game = self.setup_multiplayer(self.game, agent_id)
 
         self.game.load_config(os.path.join(scenarios_dir, CONFIGS[level][0]))
-        self.game.set_window_visible(False)
+        self.game.set_screen_resolution(ScreenResolution.RES_1920X1080)
+        self.game.set_window_visible(True)
 
         if agent_id is None:
             print("Setup singleplayer")

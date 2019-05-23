@@ -25,7 +25,7 @@ import time
 
 def run_agent(a_id):
     print(f"making {a_id}")
-    env = gym.make("VizdoomCig-v0", agent_id=a_id, agents_total=3, port=5039)
+    env = gym.make("VizdoomTakeCover-v0", agent_id=a_id)
     env.imitation = True
     policy = lambda env, obs: env.action_space.sample()
     done = False
@@ -38,7 +38,6 @@ def run_agent(a_id):
 
         while True:
             steps += 1
-            print(steps)
             time.sleep(0.05)
             action = policy(env, obs)
 
@@ -49,6 +48,16 @@ def run_agent(a_id):
             
             if reward != 0:
                 print(reward)
+
+            # if int(a_id) == 1 and steps == 25:
+            #     print("killing agent 1")
+            #     close = env.close()
+            #     break
+
+            # if int(a_id) != 1 and steps == 150:
+            #     print("Ending")
+            #     close = env.close()
+            #     break
 
 agents = []
 
